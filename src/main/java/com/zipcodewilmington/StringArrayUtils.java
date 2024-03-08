@@ -1,7 +1,9 @@
 package com.zipcodewilmington;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by leon on 1/29/18.
@@ -74,8 +76,15 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-
-        return false;
+        String[] reversedArray = new String[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversedArray[i] = array[array.length - i - 1];
+        }
+        if (Arrays.equals(reversedArray, array)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -83,7 +92,10 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
+        char[] newArr = new char[array.length];
+        for(int i = 0; i < array.length; i++){
 
+        }
         return false;
     }
 
@@ -93,8 +105,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-
-        return 0;
+        int counter = 0;
+        for(int i = 0; i < array.length; i++){
+            if(array[i].equals(value)){
+                counter++;
+            }
+        }
+        return counter;
     }
 
     /**
@@ -103,8 +120,10 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-
-        return null;
+            List<String> newArr = new ArrayList<>(Arrays.asList(array));
+            newArr.remove(valueToRemove);
+            array = newArr.toArray(new String[0]);
+        return array;
     }
 
     /**
@@ -112,8 +131,13 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-
-        return null;
+        List<String> newList = new ArrayList<>(Arrays.asList(array));
+        for(int i = 0; i < newList.size(); i++){
+            if(newList.get(i).equals(newList.get(i + 1)) || newList.get(i).equals(newList.get(i - 1))){
+                newList.remove(i);
+            }
+        }
+        return newList.toArray(new String[0]);
     }
 
     /**
