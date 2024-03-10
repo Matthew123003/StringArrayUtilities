@@ -92,11 +92,26 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        char[] newArr = new char[array.length];
-        for(int i = 0; i < array.length; i++){
-
+        //Define a string containing all the letters of the alphabet
+        String alpha = "abcdefghijklmnopqrstuvwxyz";
+        //convert the sting of letters to a char array
+        char[] alphaArray = alpha.toCharArray();
+        //Make Stringbuilder object
+        StringBuilder sb = new StringBuilder();
+        //Loop through each index of input array to make everything lowercase
+        for(String i : array){
+            sb.append(i.toLowerCase());
         }
-        return false;
+        //Assign StringBuilder instance to new variable
+        String newConcatString = sb.toString();
+        //Loop through each char of alphabet array
+        for(char letter : alphaArray){
+            //if concatString doesnt contain each letter of alphaArray return false
+            if(!newConcatString.contains(String.valueOf(letter))){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -146,13 +161,25 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        List<String> newList = new ArrayList<>(Arrays.asList(array));
-        for(int i = 0; i < newList.size() - 1; i++){
-            if (newList.get(i).equals(newList.get(i + 1))){
-            }
+       StringBuilder sb = new StringBuilder();
+       int number = 0;
+        for(int i = 0; i < array.length; i++){
+           for(int m = i; m < array.length; m++){
+               if(array[i].equals(array[m])){
+                    number++;
+                    sb.append(array[i]);
+               }
+               else{
+                   break;
+               }
+           }
+           sb.append(",");
+           i = number - 1;
         }
-
-        return null;
+        String s = sb.toString();
+        System.out.println(s);
+        String[] a = s.split(",");
+        return a;
     }
 
 
