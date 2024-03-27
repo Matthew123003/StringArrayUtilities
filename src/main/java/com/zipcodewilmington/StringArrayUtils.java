@@ -162,24 +162,20 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
        StringBuilder sb = new StringBuilder();
-       int number = 0;
         for(int i = 0; i < array.length; i++){
+            int number = 0;
            for(int m = i; m < array.length; m++){
                if(array[i].equals(array[m])){
                     number++;
                     sb.append(array[i]);
                }
-               else{
-                   break;
-               }
            }
-           sb.append(",");
-           i = number - 1;
+           i += number - 1;
         }
         String s = sb.toString();
         System.out.println(s);
-        String[] a = s.split(",");
-        return a;
+        return s.split(",");
+
     }
 
 
