@@ -161,22 +161,34 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-       StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < array.length; i++){
-            int number = 0;
-           for(int m = i; m < array.length; m++){
-               if(array[i].equals(array[m])){
-                    number++;
-                    sb.append(array[i]);
-               }
-           }
-           i += number - 1;
+//       StringBuilder sb = new StringBuilder();
+//        for(int i = 0; i < array.length; i++){
+//            int number = 0;
+//           for(int m = i; m < array.length; m++){
+//               if(array[i].equals(array[m])){
+//                    number++;
+//                    sb.append(array[i]);
+//               }
+//           }
+//           i += number - 1;
+//        }
+//        String s = sb.toString();
+//        System.out.println(s);
+//        return s.split(",");
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (String str : array) {
+            if (arrayList.isEmpty()) {
+                arrayList.add(str);
+            } else if (arrayList.get(arrayList.size() - 1).contains(str)) {
+                arrayList.set(arrayList.size() - 1, arrayList.get(arrayList.size() - 1).concat(str));
+            } else {
+                arrayList.add(str);
+            }
         }
-        String s = sb.toString();
-        System.out.println(s);
-        return s.split(",");
+        return arrayList.toArray(new String[0]);
+    }
 
     }
 
 
-}
